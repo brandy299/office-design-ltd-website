@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Design Ltd. | Staff Portal — Internal Materials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        od: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9',
+                            600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e', 950: '#082f49'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+
+    <!-- Auth Check -->
+    <script>
+        if (!sessionStorage.getItem('od_staff_auth')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <!-- Navigation -->
+    <nav class="bg-od-900 text-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="../Office_Design_Ltd_Logo%20Kopie.png" alt="Office Design Ltd." class="h-8 opacity-80">
+                <div>
+                    <h1 class="font-bold text-sm">Staff Portal</h1>
+                    <p class="text-xs text-od-200">Internal Resources</p>
+                </div>
+            </div>
+            <button onclick="logout()" class="text-sm text-od-200 hover:text-white transition-colors flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                Sign Out
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Welcome Banner -->
+        <div class="bg-gradient-to-r from-od-600 to-od-800 text-white rounded-2xl p-8 mb-10 shadow-xl fade-in">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold mb-1">Welcome to the Staff Portal</h2>
+                    <p class="text-od-100 text-sm">Here you can access internal training materials, onboarding resources, and educational documents for new team members. These materials are confidential and for internal use only.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- Training Materials -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden fade-in">
+                <div class="bg-od-50 px-6 py-4 border-b border-slate-100">
+                    <h3 class="font-bold text-od-800 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                        Training Materials
+                    </h3>
+                    <p class="text-xs text-od-600 mt-1">Onboarding & Learning Resources</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-od-50 transition-colors border border-slate-100 hover:border-od-200">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-slate-800 text-sm">AB1: Company Profile</h4>
+                            <p class="text-slate-500 text-xs mt-1">Reading material for new employees. Company facts, products, and team structure.</p>
+                            <a href="AB1_Company_Profile.docx" download class="inline-block mt-2 text-xs font-semibold text-od-600 hover:text-od-800 transition-colors">
+                                ↓ Download DOCX
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-od-50 transition-colors border border-slate-100 hover:border-od-200">
+                        <div class="w-10 h-10 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-slate-800 text-sm">AB2: Writing Frame — Company Profile</h4>
+                            <p class="text-slate-500 text-xs mt-1">Writing scaffold for new team members to introduce the company in emails and presentations.</p>
+                            <a href="AB2_Writing_Frame.docx" download class="inline-block mt-2 text-xs font-semibold text-od-600 hover:text-od-800 transition-colors">
+                                ↓ Download DOCX
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-od-50 transition-colors border border-slate-100 hover:border-od-200">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-slate-800 text-sm">Interactive Module: My Working Day</h4>
+                            <p class="text-slate-500 text-xs mt-1">Digital learning path (Seq. 2). Phrases, vocabulary check, and writing task with instant feedback.</p>
+                            <a href="modul_seq2_working_day.html" target="_blank" class="inline-block mt-2 text-xs font-semibold text-od-600 hover:text-od-800 transition-colors">
+                                → Open Module ↗
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Internal Documents -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden fade-in">
+                <div class="bg-amber-50 px-6 py-4 border-b border-slate-100">
+                    <h3 class="font-bold text-amber-800 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        Confidential: Learning Situation
+                    </h3>
+                    <p class="text-xs text-amber-600 mt-1">For Training Staff & Management Only</p>
+                </div>
+                <div class="p-6 space-y-4">
+                    
+                    <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-amber-50 transition-colors border border-slate-100 hover:border-amber-200">
+                        <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-slate-800 text-sm">LS: Welcome on Board (Complete)</h4>
+                            <p class="text-slate-500 text-xs mt-1">Full Learning Situation document. 24 teaching units, 6 sequences, all competence areas.</p>
+                            <a href="../LS_Welcome_on_Board.docx" download class="inline-block mt-2 text-xs font-semibold text-amber-600 hover:text-amber-800 transition-colors">
+                                ↓ Download DOCX
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50/50 rounded-xl p-4 border border-amber-100">
+                        <p class="text-xs text-amber-700 font-medium mb-2">⚠️ Confidentiality Notice</p>
+                        <p class="text-xs text-amber-600 leading-relaxed">
+                            These materials are designed for internal training purposes at Office Design Ltd. 
+                            Do not share with external parties. For questions, contact the HR department in Düsseldorf.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 pt-6 border-t border-slate-200 text-center">
+            <p class="text-xs text-slate-400">
+                Office Design Ltd. · Staff Portal · London HQ & Düsseldorf Branch<br>
+                For technical support: it@officedesign.co.uk
+            </p>
+            <p class="text-xs text-slate-400 mt-1">
+                Fictional company portal for educational purposes (Berufskolleg NRW)
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        function logout() {
+            sessionStorage.removeItem('od_staff_auth');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

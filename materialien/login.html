@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Design Ltd. | Staff Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .shake { animation: shake 0.4s ease-in-out; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center">
+
+    <div class="w-full max-w-md px-6">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <img src="../Office_Design_Ltd_Logo%20Kopie.png" alt="Office Design Ltd." class="h-16 mx-auto mb-4 opacity-80">
+            <h1 class="text-2xl font-bold tracking-tight">Staff Portal</h1>
+            <p class="text-slate-400 text-sm mt-1">Internal Resources — For Team Members Only</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 shadow-2xl">
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-slate-300 mb-2">Employee Email</label>
+                <input type="email" value="[your.name]@officedesign.co.uk" readonly
+                       class="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-slate-400 text-sm cursor-not-allowed">
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                <input type="password" id="password-input" placeholder="Enter staff password"
+                       class="w-full px-4 py-3 rounded-xl bg-white/10 border border-slate-600 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-od-500 focus:border-transparent transition"
+                       onkeydown="if(event.key==='Enter')checkPassword()">
+            </div>
+
+            <button onclick="checkPassword()" class="w-full bg-od-600 hover:bg-od-500 text-white font-semibold py-3 rounded-xl transition-colors shadow-lg shadow-od-600/25">
+                Sign In
+            </button>
+
+            <div id="error-msg" class="hidden mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm text-center">
+                Incorrect password. Please check with HR if you have trouble logging in.
+            </div>
+        </div>
+
+        <!-- Hint -->
+        <p class="text-center text-slate-500 text-xs mt-6">
+            Office Design Ltd. · London HQ & Düsseldorf Branch<br>
+            For technical support, contact IT: it@officedesign.co.uk
+        </p>
+    </div>
+
+    <script>
+        // Simple client-side password protection (for educational hiding only)
+        const STAFF_PASSWORD = 'Welcome2026!';
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            const form = document.getElementById('login-form');
+
+            if (input === STAFF_PASSWORD) {
+                // Store session
+                sessionStorage.setItem('od_staff_auth', 'true');
+                window.location.href = 'portal.html';
+            } else {
+                errorMsg.classList.remove('hidden');
+                form.classList.add('shake');
+                setTimeout(() => form.classList.remove('shake'), 500);
+                document.getElementById('password-input').value = '';
+                document.getElementById('password-input').focus();
+            }
+        }
+    </script>
+</body>
+</html>

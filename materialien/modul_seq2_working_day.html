@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Design Ltd. | My Working Day – Interactive Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        od: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 500: '#0ea5e9',
+                            600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e', 950: '#082f49'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+        .shake { animation: shake 0.4s ease-in-out; }
+        @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.08)} 100%{transform:scale(1)} }
+        .pop { animation: pop 0.25s ease-in-out; }
+        
+        .phase-section { display: none; }
+        .phase-section.active { display: block; }
+        
+        .mc-btn.selected { cursor: default; }
+        .mc-btn:disabled { cursor: default; opacity: 0.8; }
+        
+        /* Smooth textarea focus */
+        textarea:focus, input:focus { outline: none; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans text-slate-800">
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-slate-200 z-50">
+        <div id="progress-bar" class="h-full bg-od-600 transition-all duration-500" style="width: 25%"></div>
+    </div>
+
+    <!-- Phase Dots -->
+    <div class="flex justify-center gap-2 mt-6 mb-2 pt-2">
+        <span id="dot-0" class="w-3 h-3 rounded-full bg-od-600 transition-colors"></span>
+        <span id="dot-1" class="w-3 h-3 rounded-full bg-slate-300 transition-colors"></span>
+        <span id="dot-2" class="w-3 h-3 rounded-full bg-slate-300 transition-colors"></span>
+        <span id="dot-3" class="w-3 h-3 rounded-full bg-slate-300 transition-colors"></span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-2xl mx-auto px-4 pb-12">
+
+        <!-- Header -->
+        <div class="text-center mb-6 pt-2">
+            <img src="../Office_Design_Ltd_Logo%20Kopie.png" alt="Office Design Ltd." class="h-10 mx-auto mb-2 opacity-70">
+            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Seq. 2  ·  A2 → B1</p>
+        </div>
+
+        <!-- ===================== PHASE 1: HOOK ===================== -->
+        <section id="phase-hook" class="phase-section active fade-in">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="zap" class="w-4 h-4 text-amber-600"></i>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-amber-600">Warm Up</span>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-6 border-l-4 border-amber-400">
+                <p class="text-slate-500 text-sm mb-2">Scenario</p>
+                <p class="text-slate-800 text-lg font-medium leading-relaxed">
+                    It is your second week as a <strong>Junior Sales Assistant</strong> at Office Design Ltd. in Düsseldorf. 
+                    Your line manager, Helen Carter, asks you to introduce yourself to the London team via email.
+                </p>
+                <p class="text-slate-600 text-sm mt-3">
+                    She wants to know: <strong>What do you do every day? What are your main tasks?</strong>
+                </p>
+            </div>
+
+            <div class="bg-amber-50 rounded-xl p-5">
+                <p class="font-semibold text-slate-700 mb-3">Think about it:</p>
+                <p class="text-slate-600 text-sm mb-3">What tasks does a Junior Sales Assistant typically do in an office? Write 3 ideas in English:</p>
+                <textarea class="w-full p-3 rounded-xl border border-amber-200 text-slate-700 text-sm resize-none h-24 bg-white focus:ring-2 focus:ring-amber-300 transition" placeholder="1. Answer emails...\n2. ...\n3. ..."></textarea>
+            </div>
+
+            <button onclick="showPhase(1)" class="mt-6 w-full bg-od-600 text-white py-3 rounded-xl font-semibold hover:bg-od-700 transition-colors shadow-lg shadow-od-500/20">
+                Let's dive in →
+            </button>
+        </section>
+
+        <!-- ===================== PHASE 2: INPUT ===================== -->
+        <section id="phase-input" class="phase-section fade-in">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="book-open" class="w-4 h-4 text-blue-600"></i>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-blue-600">Learn</span>
+            </div>
+
+            <!-- Chunk 1: Key Phrases -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4">
+                <h3 class="font-bold text-slate-800 mb-3">Describing Your Daily Tasks</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                    When you talk or write about your job, these phrases help you sound professional and clear.
+                </p>
+
+                <!-- Key Phrases Box -->
+                <div class="bg-blue-50 rounded-xl p-4">
+                    <p class="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-3">Key Phrases</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">I am responsible for...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">describing your main duties</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">My main tasks include...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">listing several activities</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">I deal with...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">what/who you work with</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">I spend a lot of time...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">activities that take most of your day</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">I also help with...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">secondary tasks</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <span class="text-slate-700 font-medium text-sm">Every day I...</span>
+                            <span class="text-slate-500 text-sm ml-4 text-right">daily routines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chunk 2: Example Text -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4">
+                <h3 class="font-bold text-slate-800 mb-3">Example: A Day in the Life</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                    Read how Helen Carter describes her typical day. Notice the phrases she uses.
+                </p>
+                <div class="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                    <p class="text-sm text-slate-700 leading-relaxed italic">
+                        "<span class="font-semibold text-od-700">I am responsible for</span> the Sales Department in Düsseldorf. 
+                        <span class="font-semibold text-od-700">My main tasks include</span> managing client relationships, preparing price quotes, and coordinating with the London HQ. 
+                        <span class="font-semibold text-od-700">I spend a lot of time</span> on the phone with business clients. 
+                        <span class="font-semibold text-od-700">I also help with</span> training new Sales Assistants."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vocabulary -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 mb-4">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3 flex items-center gap-2">
+                    <i data-lucide="book" class="w-3.5 h-3.5 inline"></i> Vocabulary
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="showVocab('client')" class="px-3 py-1.5 bg-od-50 text-od-700 rounded-lg text-sm hover:bg-od-100 transition-colors underline decoration-dotted cursor-pointer">client</button>
+                    <button onclick="showVocab('quote')" class="px-3 py-1.5 bg-od-50 text-od-700 rounded-lg text-sm hover:bg-od-100 transition-colors underline decoration-dotted cursor-pointer">quote</button>
+                    <button onclick="showVocab('coordinate')" class="px-3 py-1.5 bg-od-50 text-od-700 rounded-lg text-sm hover:bg-od-100 transition-colors underline decoration-dotted cursor-pointer">coordinate</button>
+                    <button onclick="showVocab('database')" class="px-3 py-1.5 bg-od-50 text-od-700 rounded-lg text-sm hover:bg-od-100 transition-colors underline decoration-dotted cursor-pointer">database</button>
+                    <button onclick="showVocab('appointment')" class="px-3 py-1.5 bg-od-50 text-od-700 rounded-lg text-sm hover:bg-od-100 transition-colors underline decoration-dotted cursor-pointer">appointment</button>
+                </div>
+            </div>
+
+            <!-- Vocab Modal -->
+            <div id="vocab-modal" class="hidden bg-white rounded-xl shadow-lg border border-slate-100 p-5 mb-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h4 id="vocab-term" class="font-bold text-od-700 text-lg"></h4>
+                    <button onclick="closeVocab()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <p id="vocab-def" class="text-slate-600 text-sm"></p>
+            </div>
+
+            <button onclick="showPhase(2)" class="w-full bg-od-600 text-white py-3 rounded-xl font-semibold hover:bg-od-700 transition-colors shadow-lg shadow-od-500/20">
+                Ready to check your knowledge →
+            </button>
+        </section>
+
+        <!-- ===================== PHASE 3: CHECK ===================== -->
+        <section id="phase-check" class="phase-section fade-in">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-emerald-600">Check</span>
+            </div>
+
+            <!-- Score -->
+            <div class="bg-white rounded-2xl shadow-sm p-4 mb-4 flex items-center justify-between">
+                <span class="text-slate-500 text-sm">Your score</span>
+                <span id="score-display" class="font-bold text-od-600 text-lg">0 / 3</span>
+            </div>
+
+            <!-- Q1: MC -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4" id="q1">
+                <p class="font-semibold text-slate-800 mb-4">
+                    <span class="text-od-500 mr-2">Q1.</span>Which phrase do you use to <strong>list</strong> your daily activities?
+                </p>
+                <div class="space-y-2">
+                    <button onclick="checkMC(this, false, 'q1', 'Try again. "I am responsible for" is for main duties, not listing.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        A) I am responsible for...
+                    </button>
+                    <button onclick="checkMC(this, true, 'q1', 'Correct! "My main tasks include..." is used for listing activities.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        B) My main tasks include...
+                    </button>
+                    <button onclick="checkMC(this, false, 'q1', 'Try again. "I deal with" is for describing who/what you work with.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        C) I deal with...
+                    </button>
+                </div>
+                <div class="feedback mt-1"></div>
+            </div>
+
+            <!-- Q2: MC -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4" id="q2">
+                <p class="font-semibold text-slate-800 mb-4">
+                    <span class="text-od-500 mr-2">Q2.</span>Complete the sentence: "I <strong>spend a lot of time</strong> ______ emails from our clients."
+                </p>
+                <div class="space-y-2">
+                    <button onclick="checkMC(this, false, 'q2', 'Try again. We say "answering" emails, not "writing to" in this context.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        A) writing to
+                    </button>
+                    <button onclick="checkMC(this, true, 'q2', 'Correct! "Answering emails" is the correct collocation.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        B) answering
+                    </button>
+                    <button onclick="checkMC(this, false, 'q2', 'Try again. We don\'t "speak" emails, we answer them.')" class="mc-btn w-full text-left px-4 py-3 rounded-xl border border-slate-200 text-slate-600 text-sm hover:border-od-300 hover:bg-od-50 transition-colors">
+                        C) speaking
+                    </button>
+                </div>
+                <div class="feedback mt-1"></div>
+            </div>
+
+            <!-- Q3: Gap Fill -->
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4" id="q3">
+                <p class="font-semibold text-slate-800 mb-4">
+                    <span class="text-od-500 mr-2">Q3.</span>Complete the sentence with the correct phrase:
+                </p>
+                <p class="text-slate-600 text-sm mb-3">
+                    "I ______ managing the customer database and updating records."
+                </p>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <button onclick="fillGap('am responsible for')" class="gap-option px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm hover:bg-slate-200 transition-colors border border-slate-200">am responsible for</button>
+                    <button onclick="fillGap('spend a lot of time')" class="gap-option px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm hover:bg-slate-200 transition-colors border border-slate-200">spend a lot of time</button>
+                    <button onclick="fillGap('deal with')" class="gap-option px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm hover:bg-slate-200 transition-colors border border-slate-200">deal with</button>
+                </div>
+                <p id="gap-fill-display" class="text-sm text-slate-700 font-medium mb-3 min-h-[1.5em]"></p>
+                <button onclick="checkGapFill()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm hover:bg-emerald-700 transition-colors">
+                    Check Answer
+                </button>
+                <div class="feedback mt-1"></div>
+            </div>
+
+            <button onclick="showPhase(3)" id="check-next-btn" class="w-full bg-od-600 text-white py-3 rounded-xl font-semibold hover:bg-od-700 transition-colors shadow-lg shadow-od-500/20 hidden">
+                Now apply what you've learned →
+            </button>
+        </section>
+
+        <!-- ===================== PHASE 4: TRANSFER ===================== -->
+        <section id="phase-transfer" class="phase-section fade-in">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-violet-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="star" class="w-4 h-4 text-violet-600"></i>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-violet-600">Apply</span>
+            </div>
+
+            <!-- Scenario -->
+            <div class="bg-violet-50 rounded-2xl p-5 mb-4 border-l-4 border-violet-400">
+                <p class="text-xs font-semibold text-violet-600 uppercase mb-2">🏢 Office Design Ltd. – Your Task</p>
+                <p class="text-slate-700 text-sm leading-relaxed">
+                    Write an email to the London HQ team (approx. 80–100 words). Introduce yourself and describe your typical working day as a Junior Sales Assistant. Use at least <strong>3 key phrases</strong> from today's lesson.
+                </p>
+            </div>
+
+            <!-- Phrase Box -->
+            <details class="mb-4">
+                <summary class="cursor-pointer bg-white rounded-xl shadow-sm px-5 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> Useful Phrases (click to expand)
+                </summary>
+                <div class="bg-white rounded-b-xl shadow-sm px-5 pb-4 mt-0 border-t border-slate-100">
+                    <ul class="mt-3 space-y-1.5 text-sm text-slate-600">
+                        <li><span class="font-medium text-od-600">I am responsible for...</span> – your main duties</li>
+                        <li><span class="font-medium text-od-600">My main tasks include...</span> – listing activities</li>
+                        <li><span class="font-medium text-od-600">I deal with...</span> – customers, orders, emails</li>
+                        <li><span class="font-medium text-od-600">I spend a lot of time...</span> – what takes most of your day</li>
+                        <li><span class="font-medium text-od-600">I also help with...</span> – secondary tasks</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Writing Area -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 mb-4">
+                <label class="text-sm font-semibold text-slate-600 mb-2 block">Your email (aim for 80–100 words):</label>
+                <textarea id="transfer-text" class="w-full p-4 rounded-xl border border-slate-200 text-slate-700 text-sm resize-none h-48 focus:ring-2 focus:ring-od-300 transition" placeholder="Dear London Team,&#10;&#10;I am writing to introduce myself..."></textarea>
+                <div class="flex justify-between items-center mt-2">
+                    <span id="word-count" class="text-xs text-slate-400">0 words</span>
+                    <span class="text-xs text-slate-400">Target: 80–100 words</span>
+                </div>
+            </div>
+
+            <!-- Self-Assessment -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 mb-4">
+                <p class="text-sm font-semibold text-slate-700 mb-3">✅ Self-check before submitting:</p>
+                <div class="space-y-2">
+                    <label class="flex items-center gap-3 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded text-od-600 accent-od-600"> 
+                        I used at least 3 key phrases from today's lesson
+                    </label>
+                    <label class="flex items-center gap-3 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded text-od-600 accent-od-600"> 
+                        I described my daily tasks clearly
+                    </label>
+                    <label class="flex items-center gap-3 text-sm text-slate-600 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded text-od-600 accent-od-600"> 
+                        My email has a clear structure (opening → body → closing)
+                    </label>
+                </div>
+            </div>
+
+            <!-- Complete -->
+            <button onclick="completeModule()" class="w-full bg-gradient-to-r from-od-600 to-violet-600 text-white py-3 rounded-xl font-semibold hover:opacity-90 transition-opacity shadow-lg">
+                🎉 Complete Module
+            </button>
+        </section>
+
+        <!-- ===================== COMPLETION SCREEN ===================== -->
+        <section id="phase-complete" class="phase-section hidden fade-in text-center py-12">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="trophy" class="w-8 h-8 text-green-600"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">Well done!</h2>
+            <p class="text-slate-600 mb-6">You have completed this module.</p>
+            <div class="bg-white rounded-2xl shadow-sm p-6 max-w-md mx-auto">
+                <p class="text-sm text-slate-500 mb-2">Your score</p>
+                <p id="final-score" class="text-3xl font-bold text-od-600 mb-4">0 / 3</p>
+                <p class="text-sm text-slate-600">Keep practising your phrases — you'll use them in your presentation for the London team!</p>
+            </div>
+            <button onclick="location.reload()" class="mt-6 px-6 py-3 bg-slate-100 text-slate-700 rounded-xl font-medium hover:bg-slate-200 transition-colors">
+                Start Again
+            </button>
+        </section>
+
+    </div>
+
+    <script>
+        // Vocabulary
+        const vocab = {
+            'client': 'A person or company that buys services from another company. E.g.: "We have over 500 B2B clients across Europe."',
+            'quote': 'A formal statement of the estimated cost for a job or service. E.g.: "I will send you a price quote by Friday."',
+            'coordinate': 'To organize different people or things so they work together. E.g.: "I coordinate with the Logistics team on delivery dates."',
+            'database': 'An organized collection of information stored on a computer. E.g.: "I update the customer database every morning."',
+            'appointment': 'A formal arrangement to meet or visit someone at a particular time. E.g.: "I have an appointment with a client at 2pm."'
+        };
+
+        let currentPhase = 0;
+        let score = 0;
+        const totalQuestions = 3;
+        let answeredQ1 = false;
+        let answeredQ2 = false;
+        let answeredQ3 = false;
+        let selectedGap = '';
+
+        const phases = ['hook', 'input', 'check', 'transfer'];
+
+        function showPhase(index) {
+            phases.forEach((p, i) => {
+                document.getElementById('phase-' + p).classList.toggle('active', i === index);
+                document.getElementById('phase-' + p).classList.toggle('hidden', i !== index);
+            });
+            
+            // Update progress bar
+            const pct = ((index + 1) / (phases.length + 1)) * 100;
+            document.getElementById('progress-bar').style.width = pct + '%';
+            
+            // Update dots
+            document.querySelectorAll('.phase-dot, [id^="dot-"]').forEach((dot, i) => {
+                if (dot.id.startsWith('dot-')) {
+                    dot.className = `w-3 h-3 rounded-full transition-colors ${i <= index ? 'bg-od-600' : 'bg-slate-300'}`;
+                }
+            });
+            
+            currentPhase = index;
+            lucide.createIcons();
+        }
+
+        function showVocab(word) {
+            document.getElementById('vocab-term').textContent = word;
+            document.getElementById('vocab-def').textContent = vocab[word] || 'Definition not found.';
+            document.getElementById('vocab-modal').classList.remove('hidden');
+        }
+
+        function closeVocab() {
+            document.getElementById('vocab-modal').classList.add('hidden');
+        }
+
+        function checkMC(btn, isCorrect, questionId, feedbackText) {
+            const container = document.getElementById(questionId);
+            container.querySelectorAll('.mc-btn').forEach(b => {
+                b.disabled = true;
+                b.classList.add('selected');
+            });
+            
+            if (isCorrect) {
+                btn.classList.add('bg-green-50', 'border-green-400', 'text-green-700');
+                if (!window['answered_' + questionId]) {
+                    score++;
+                    window['answered_' + questionId] = true;
+                }
+            } else {
+                btn.classList.add('bg-red-50', 'border-red-400', 'text-red-700');
+                btn.classList.add('shake');
+            }
+            
+            // Highlight correct answer
+            container.querySelectorAll('.mc-btn').forEach(b => {
+                if (b.getAttribute('onclick').includes('true')) {
+                    b.classList.add('bg-green-50', 'border-green-400', 'text-green-700');
+                }
+            });
+            
+            container.querySelector('.feedback').innerHTML = 
+                `<p class="mt-2 text-sm ${isCorrect ? 'text-green-600' : 'text-red-600'} fade-in">${feedbackText}</p>`;
+            
+            document.getElementById('score-display').textContent = `${score} / ${totalQuestions}`;
+            checkAllAnswered();
+        }
+
+        function fillGap(phrase) {
+            selectedGap = phrase;
+            document.getElementById('gap-fill-display').textContent = '"I ' + phrase + ' managing the customer database and updating records."';
+            document.querySelectorAll('.gap-option').forEach(btn => {
+                btn.classList.remove('bg-od-100', 'border-od-300', 'text-od-700');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-700');
+            event.target.classList.add('bg-od-100', 'border-od-300', 'text-od-700');
+        }
+
+        function checkGapFill() {
+            const container = document.getElementById('q3');
+            const isCorrect = selectedGap === 'am responsible for';
+            
+            if (isCorrect) {
+                if (!answeredQ3) {
+                    score++;
+                    answeredQ3 = true;
+                }
+                container.querySelector('.feedback').innerHTML = 
+                    `<p class="mt-2 text-sm text-green-600 fade-in">Correct! "I am responsible for" is the right phrase for describing a main duty.</p>`;
+                document.getElementById('gap-fill-display').classList.add('text-green-700');
+            } else {
+                container.querySelector('.feedback').innerHTML = 
+                    `<p class="mt-2 text-sm text-red-600 fade-in">Try again. The correct phrase is "am responsible for" — it describes a main duty.</p>`;
+                document.getElementById('gap-fill-display').classList.add('text-red-700', 'shake');
+            }
+            
+            document.querySelectorAll('.gap-option').forEach(btn => btn.disabled = true);
+            document.getElementById('score-display').textContent = `${score} / ${totalQuestions}`;
+            checkAllAnswered();
+        }
+
+        function checkAllAnswered() {
+            if (score > 0 || (answeredQ1 && answeredQ2 && answeredQ3)) {
+                document.getElementById('check-next-btn').classList.remove('hidden');
+            }
+        }
+
+        // Word counter
+        document.getElementById('transfer-text').addEventListener('input', function() {
+            const words = this.value.trim().split(/\s+/).filter(w => w).length;
+            document.getElementById('word-count').textContent = `${words} words`;
+            if (words >= 80 && words <= 120) {
+                document.getElementById('word-count').classList.add('text-green-600');
+                document.getElementById('word-count').classList.remove('text-slate-400', 'text-red-600');
+            } else if (words > 120) {
+                document.getElementById('word-count').classList.add('text-red-600');
+                document.getElementById('word-count').classList.remove('text-slate-400', 'text-green-600');
+            } else {
+                document.getElementById('word-count').classList.add('text-slate-400');
+                document.getElementById('word-count').classList.remove('text-green-600', 'text-red-600');
+            }
+        });
+
+        function completeModule() {
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#0ea5e9', '#0284c7', '#6366f1', '#8b5cf6']
+            });
+            
+            document.getElementById('final-score').textContent = `${score} / ${totalQuestions}`;
+            
+            phases.forEach(p => {
+                document.getElementById('phase-' + p).classList.remove('active');
+                document.getElementById('phase-' + p).classList.add('hidden');
+            });
+            document.getElementById('phase-complete').classList.remove('hidden');
+            document.getElementById('progress-bar').style.width = '100%';
+            
+            lucide.createIcons();
+        }
+
+        // Initialize
+        lucide.createIcons();
+    </script>
+</body>
+</html>
