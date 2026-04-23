@@ -363,20 +363,22 @@
             'appointment': 'A formal arrangement to meet or visit someone at a particular time. E.g.: "I have an appointment with a client at 2pm."'
         };
 
-        let currentPhase = 0;
-        let score = 0;
-        const totalQuestions = 3;
-        let answeredQ1 = false;
-        let answeredQ2 = false;
-        let answeredQ3 = false;
-        let selectedGap = '';
+        // --- STATE MANAGEMENT ---
+        const state = {
+            currentPhase: 0,
+            score: 0,
+            totalQuestions: 3,
+            answered: { q1: false, q2: false, q3: false },
+            selectedGap: ''
+        };
 
         const phases = ['hook', 'input', 'check', 'transfer'];
 
         function showPhase(index) {
             phases.forEach((p, i) => {
-                document.getElementById('phase-' + p).classList.toggle('active', i === index);
-                document.getElementById('phase-' + p).classList.toggle('hidden', i !== index);
+                const el = document.getElementById('phase-' + p);
+                el.classList.toggle('active', i === index);
+                el.classList.toggle('hidden', i !== index);
             });
             
             // Update progress bar
@@ -384,13 +386,14 @@
             document.getElementById('progress-bar').style.width = pct + '%';
             
             // Update dots
-            document.querySelectorAll('.phase-dot, [id^="dot-"]').forEach((dot, i) => {
-                if (dot.id.startsWith('dot-')) {
+            for (let i = 0; i < 4; i++) {
+                const dot = document.getElementById('dot-' + i);
+                if (dot) {
                     dot.className = `w-3 h-3 rounded-full transition-colors ${i <= index ? 'bg-od-600' : 'bg-slate-300'}`;
                 }
-            });
+            }
             
-            currentPhase = index;
+            state.currentPhase = index;
             lucide.createIcons();
         }
 
@@ -406,91 +409,121 @@
 
         function checkMC(btn, isCorrect, questionId, feedbackText) {
             const container = document.getElementById(questionId);
+            
+            // Disable all buttons in this question
             container.querySelectorAll('.mc-btn').forEach(b => {
                 b.disabled = true;
                 b.classList.add('selected');
+                b.style.pointerEvents = 'none';
             });
             
             if (isCorrect) {
                 btn.classList.add('bg-green-50', 'border-green-400', 'text-green-700');
-                if (!window['answered_' + questionId]) {
-                    score++;
-                    window['answered_' + questionId] = true;
+                btn.classList.add('pop');
+                if (!state.answered[questionId]) {
+                    state.score++;
+                    state.answered[questionId] = true;
                 }
             } else {
                 btn.classList.add('bg-red-50', 'border-red-400', 'text-red-700');
                 btn.classList.add('shake');
             }
             
-            // Highlight correct answer
+            // Highlight the correct answer
             container.querySelectorAll('.mc-btn').forEach(b => {
-                if (b.getAttribute('onclick').includes('true')) {
+                const onclickAttr = b.getAttribute('onclick') || '';
+                if (onclickAttr.includes(', true,')) {
                     b.classList.add('bg-green-50', 'border-green-400', 'text-green-700');
                 }
             });
             
-            container.querySelector('.feedback').innerHTML = 
-                `<p class="mt-2 text-sm ${isCorrect ? 'text-green-600' : 'text-red-600'} fade-in">${feedbackText}</p>`;
+            // Show feedback
+            const feedbackDiv = container.querySelector('.feedback');
+            feedbackDiv.innerHTML = 
+                `<div class="mt-2 p-3 rounded-xl text-sm fade-in ${isCorrect ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}">
+                    <span class="font-bold">${isCorrect ? '✓ Correct!' : '✗ Not quite.'}</span> ${feedbackText}
+                </div>`;
             
-            document.getElementById('score-display').textContent = `${score} / ${totalQuestions}`;
+            document.getElementById('score-display').textContent = `${state.score} / ${state.totalQuestions}`;
             checkAllAnswered();
         }
 
         function fillGap(phrase) {
-            selectedGap = phrase;
-            document.getElementById('gap-fill-display').textContent = '"I ' + phrase + ' managing the customer database and updating records."';
+            state.selectedGap = phrase;
+            const display = document.getElementById('gap-fill-display');
+            display.textContent = '"I ' + phrase + ' managing the customer database and updating records."';
+            display.classList.remove('text-green-700', 'text-red-700', 'shake');
+            display.classList.add('text-slate-700');
+            
             document.querySelectorAll('.gap-option').forEach(btn => {
                 btn.classList.remove('bg-od-100', 'border-od-300', 'text-od-700');
-                btn.classList.add('bg-slate-100', 'text-slate-700');
+                btn.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-200');
             });
-            event.target.classList.remove('bg-slate-100', 'text-slate-700');
-            event.target.classList.add('bg-od-100', 'border-od-300', 'text-od-700');
+            
+            // Highlight selected
+            const clickedBtn = event.target;
+            clickedBtn.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-200');
+            clickedBtn.classList.add('bg-od-100', 'border-od-300', 'text-od-700');
         }
 
         function checkGapFill() {
             const container = document.getElementById('q3');
-            const isCorrect = selectedGap === 'am responsible for';
+            const isCorrect = state.selectedGap === 'am responsible for';
+            
+            // Disable all gap options
+            document.querySelectorAll('.gap-option').forEach(btn => {
+                btn.disabled = true;
+                btn.style.pointerEvents = 'none';
+            });
             
             if (isCorrect) {
-                if (!answeredQ3) {
-                    score++;
-                    answeredQ3 = true;
+                if (!state.answered.q3) {
+                    state.score++;
+                    state.answered.q3 = true;
                 }
                 container.querySelector('.feedback').innerHTML = 
-                    `<p class="mt-2 text-sm text-green-600 fade-in">Correct! "I am responsible for" is the right phrase for describing a main duty.</p>`;
+                    `<div class="mt-2 p-3 rounded-xl text-sm fade-in bg-green-50 text-green-700 border border-green-200">
+                        <span class="font-bold">✓ Correct!</span> "I am responsible for" is the right phrase for describing a main duty.
+                    </div>`;
+                document.getElementById('gap-fill-display').classList.remove('text-slate-700', 'text-red-700');
                 document.getElementById('gap-fill-display').classList.add('text-green-700');
             } else {
                 container.querySelector('.feedback').innerHTML = 
-                    `<p class="mt-2 text-sm text-red-600 fade-in">Try again. The correct phrase is "am responsible for" — it describes a main duty.</p>`;
+                    `<div class="mt-2 p-3 rounded-xl text-sm fade-in bg-red-50 text-red-700 border border-red-200">
+                        <span class="font-bold">✗ Not quite.</span> The correct phrase is <strong>"am responsible for"</strong> — it describes a main duty.
+                    </div>`;
+                document.getElementById('gap-fill-display').classList.remove('text-slate-700', 'text-green-700');
                 document.getElementById('gap-fill-display').classList.add('text-red-700', 'shake');
             }
             
-            document.querySelectorAll('.gap-option').forEach(btn => btn.disabled = true);
-            document.getElementById('score-display').textContent = `${score} / ${totalQuestions}`;
+            document.getElementById('score-display').textContent = `${state.score} / ${state.totalQuestions}`;
             checkAllAnswered();
         }
 
         function checkAllAnswered() {
-            if (score > 0 || (answeredQ1 && answeredQ2 && answeredQ3)) {
+            const allAnswered = state.answered.q1 && state.answered.q2 && state.answered.q3;
+            if (state.score > 0 || allAnswered) {
                 document.getElementById('check-next-btn').classList.remove('hidden');
             }
         }
 
         // Word counter
-        document.getElementById('transfer-text').addEventListener('input', function() {
-            const words = this.value.trim().split(/\s+/).filter(w => w).length;
-            document.getElementById('word-count').textContent = `${words} words`;
-            if (words >= 80 && words <= 120) {
-                document.getElementById('word-count').classList.add('text-green-600');
-                document.getElementById('word-count').classList.remove('text-slate-400', 'text-red-600');
-            } else if (words > 120) {
-                document.getElementById('word-count').classList.add('text-red-600');
-                document.getElementById('word-count').classList.remove('text-slate-400', 'text-green-600');
-            } else {
-                document.getElementById('word-count').classList.add('text-slate-400');
-                document.getElementById('word-count').classList.remove('text-green-600', 'text-red-600');
-            }
-        });
+        const transferText = document.getElementById('transfer-text');
+        if (transferText) {
+            transferText.addEventListener('input', function() {
+                const words = this.value.trim().split(/\s+/).filter(w => w).length;
+                const wcEl = document.getElementById('word-count');
+                wcEl.textContent = `${words} words`;
+                wcEl.classList.remove('text-slate-400', 'text-green-600', 'text-red-600');
+                if (words >= 80 && words <= 120) {
+                    wcEl.classList.add('text-green-600');
+                } else if (words > 120) {
+                    wcEl.classList.add('text-red-600');
+                } else {
+                    wcEl.classList.add('text-slate-400');
+                }
+            });
+        }
 
         function completeModule() {
             confetti({
@@ -500,7 +533,7 @@
                 colors: ['#0ea5e9', '#0284c7', '#6366f1', '#8b5cf6']
             });
             
-            document.getElementById('final-score').textContent = `${score} / ${totalQuestions}`;
+            document.getElementById('final-score').textContent = `${state.score} / ${state.totalQuestions}`;
             
             phases.forEach(p => {
                 document.getElementById('phase-' + p).classList.remove('active');
