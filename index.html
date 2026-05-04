@@ -44,7 +44,6 @@
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
 
-        /* Lightbox */
         .lightbox-overlay {
             position: fixed; inset: 0; z-index: 100;
             background: rgba(2, 6, 23, 0.92); backdrop-filter: blur(8px);
@@ -77,7 +76,6 @@
             pointer-events: none;
         }
 
-        /* Org tree */
         .org-tree ul { padding-top: 20px; position: relative; }
         .org-tree li {
             float: left; text-align: center; list-style-type: none;
@@ -111,6 +109,9 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+
+        [data-a2][data-b2] { transition: opacity 0.2s ease; }
+        .level-switching [data-a2][data-b2] { opacity: 0.4; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
@@ -154,26 +155,24 @@
     <!-- Hero Section -->
     <header class="pt-20">
         <div class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
-            <!-- Background Image -->
             <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1920&q=80');"></div>
-            <!-- Overlay Gradient -->
             <div class="absolute inset-0 bg-gradient-to-br from-od-950/90 via-od-900/85 to-slate-900/80"></div>
 
             <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
                 <div class="reveal">
-                    <span class="inline-block py-1 px-4 rounded-full bg-od-500/20 text-od-300 text-sm font-semibold mb-5 border border-od-400/30">Headquarters London · Branch Düsseldorf</span>
+                    <span class="inline-block py-1 px-4 rounded-full bg-od-500/20 text-od-300 text-sm font-semibold mb-5 border border-od-400/30"><span data-a2="Headquarters London · Branch Düsseldorf" data-b2="Corporate Headquarters London · Branch Office Düsseldorf">Headquarters London · Branch Düsseldorf</span></span>
                     <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight tracking-tight">
-                        Ergonomic Office Furniture for Modern Businesses
+                        <span data-a2="Ergonomic Office Furniture for Modern Businesses" data-b2="Ergonomic Workplace Solutions for the Contemporary Enterprise">Ergonomic Office Furniture for Modern Businesses</span>
                     </h1>
                     <p class="text-base md:text-lg text-white/80 mb-8 max-w-2xl mx-auto font-light leading-relaxed">
-                        We design and sell premium office furniture across Europe. Healthy employees are productive employees.
+                        <span data-a2="We design and sell premium office furniture across Europe. Healthy employees are productive employees." data-b2="We specialise in the design and distribution of premium ergonomic furnishings throughout the European market. A healthy workforce is a productive workforce.">We design and sell premium office furniture across Europe. Healthy employees are productive employees.</span>
                     </p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <a href="#products" class="bg-white text-od-950 font-bold py-3 px-6 rounded-xl shadow-lg hover:bg-od-50 transition">
-                            View Our Products
+                            <span data-a2="View Our Products" data-b2="Explore Our Product Range">View Our Products</span>
                         </a>
                         <a href="#about" class="bg-transparent border-2 border-white/30 text-white font-bold py-3 px-6 rounded-xl hover:bg-white/10 transition">
-                            About Our Company
+                            <span data-a2="About Our Company" data-b2="About Our Organisation">About Our Company</span>
                         </a>
                     </div>
                 </div>
@@ -189,19 +188,19 @@
         <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-100">
             <div class="p-6 md:p-8 text-center reveal">
                 <div class="text-3xl md:text-4xl font-bold text-od-600">2012</div>
-                <div class="text-sm text-slate-500 mt-1 font-medium">Founded in London</div>
+                <div class="text-sm text-slate-500 mt-1 font-medium"><span data-a2="Founded in London" data-b2="Established in London">Founded in London</span></div>
             </div>
             <div class="p-6 md:p-8 text-center reveal delay-100">
                 <div class="text-3xl md:text-4xl font-bold text-od-600">150+</div>
-                <div class="text-sm text-slate-500 mt-1 font-medium">Team Members</div>
+                <div class="text-sm text-slate-500 mt-1 font-medium"><span data-a2="Team Members" data-b2="Employees Worldwide">Team Members</span></div>
             </div>
             <div class="p-6 md:p-8 text-center reveal delay-200">
                 <div class="text-3xl md:text-4xl font-bold text-od-600">2</div>
-                <div class="text-sm text-slate-500 mt-1 font-medium">Offices</div>
+                <div class="text-sm text-slate-500 mt-1 font-medium"><span data-a2="Offices" data-b2="Branch Offices">Offices</span></div>
             </div>
             <div class="p-6 md:p-8 text-center reveal delay-300">
                 <div class="text-3xl md:text-4xl font-bold text-od-600">B2B</div>
-                <div class="text-sm text-slate-500 mt-1 font-medium">Business Clients</div>
+                <div class="text-sm text-slate-500 mt-1 font-medium"><span data-a2="Business Clients" data-b2="Corporate Clientele">Business Clients</span></div>
             </div>
         </div>
     </div>
@@ -213,9 +212,8 @@
             <h2 class="text-4xl font-bold text-slate-900 mt-2">About Office Design Ltd.</h2>
         </div>
 
-        <!-- Prominent Logo for Learner Analysis -->
         <div class="text-center mb-12 reveal">
-            <p class="text-sm text-slate-500 mb-4 uppercase tracking-wider font-semibold">Our Brand Identity — Click to Enlarge</p>
+            <p class="text-sm text-slate-500 mb-4 uppercase tracking-wider font-semibold"><span data-a2="Our Brand Identity — Click to Enlarge" data-b2="Corporate Identity — Click to Enlarge">Our Brand Identity — Click to Enlarge</span></p>
             <img src="Office_Design_Ltd_Logo%20Kopie.png"
                  alt="Office Design Ltd. Logo"
                  class="h-36 md:h-48 w-auto mx-auto cursor-pointer hover:scale-105 transition-transform duration-300 shadow-xl rounded-2xl bg-white p-6 border border-slate-100"
@@ -226,31 +224,31 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="reveal-left">
                 <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                    <strong class="text-slate-900">Office Design Ltd.</strong> is a British company that designs and sells premium ergonomic office furniture. We are a limited company (Ltd.) registered in the United Kingdom.
+                    <span data-a2="Office Design Ltd. is a British company that designs and sells premium ergonomic office furniture. We are a limited company (Ltd.) registered in the United Kingdom." data-b2="Office Design Ltd. is a UK-registered limited company that specialises in the conception and distribution of premium ergonomic workplace furnishings. Our legal structure as a Ltd. ensures limited liability for our shareholders.">Office Design Ltd. is a British company that designs and sells premium ergonomic office furniture. We are a limited company (Ltd.) registered in the United Kingdom.</span>
                 </p>
                 <p class="text-slate-600 leading-relaxed mb-6">
-                    Our headquarters are in <strong>London</strong>, and we have a branch office in <strong>Düsseldorf, Germany</strong>. We supply furniture to businesses across Europe, from small start-ups to large corporate headquarters.
+                    <span data-a2="Our headquarters are in London, and we have a branch office in Düsseldorf, Germany. We supply furniture to businesses across Europe, from small start-ups to large corporate headquarters." data-b2="Headquartered in London with a branch office in Düsseldorf, Germany, we supply workplace solutions to enterprises across the European market, ranging from emerging start-ups to large-scale corporate headquarters.">Our headquarters are in London, and we have a branch office in Düsseldorf, Germany. We supply furniture to businesses across Europe, from small start-ups to large corporate headquarters.</span>
                 </p>
                 <div class="bg-od-50 border-l-4 border-od-500 p-5 rounded-r-lg mb-6">
                     <h4 class="font-bold text-od-800 mb-2">Our Mission</h4>
-                    <p class="text-od-700 text-sm">We create office furniture that looks great and prioritizes ergonomics and employee health. Healthy employees are productive employees.</p>
+                    <p class="text-od-700 text-sm"><span data-a2="We create office furniture that looks great and prioritizes ergonomics and employee health. Healthy employees are productive employees." data-b2="We develop office furnishings that combine aesthetic appeal with a strong emphasis on ergonomics and occupational well-being. A healthy workforce drives sustainable productivity.">We create office furniture that looks great and prioritizes ergonomics and employee health. Healthy employees are productive employees.</span></p>
                 </div>
                 <ul class="space-y-3 text-slate-700">
                     <li class="flex items-start gap-3">
                         <span class="text-od-500 mt-1">●</span>
-                        <span><strong>Business areas:</strong> Office chairs, desks, and storage solutions</span>
+                        <span><strong>Business areas:</strong> <span data-a2="Office chairs, desks, and storage solutions" data-b2="Ergonomic seating, height-adjustable desks, and modular storage systems">Office chairs, desks, and storage solutions</span></span>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-od-500 mt-1">●</span>
-                        <span><strong>Clients:</strong> Start-ups, agencies, and Fortune 500 companies</span>
+                        <span><strong>Clients:</strong> <span data-a2="Start-ups, agencies, and Fortune 500 companies" data-b2="Emerging enterprises, creative agencies, and multinational corporations">Start-ups, agencies, and Fortune 500 companies</span></span>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-od-500 mt-1">●</span>
-                        <span><strong>Markets:</strong> UK, Germany, and the rest of Europe</span>
+                        <span><strong>Markets:</strong> <span data-a2="UK, Germany, and the rest of Europe" data-b2="The United Kingdom, Germany, and the wider European market">UK, Germany, and the rest of Europe</span></span>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="text-od-500 mt-1">●</span>
-                        <span><strong>Focus:</strong> B2B (Business-to-Business) sales</span>
+                        <span><strong>Focus:</strong> <span data-a2="B2B (Business-to-Business) sales" data-b2="B2B (Business-to-Business) procurement and supply">B2B (Business-to-Business) sales</span></span>
                     </li>
                 </ul>
             </div>
@@ -302,7 +300,7 @@
             <div class="text-center mb-14 reveal">
                 <span class="text-od-600 font-semibold tracking-wider uppercase text-sm">Product Range</span>
                 <h2 class="text-4xl font-bold text-slate-900 mt-2">Our Bestsellers</h2>
-                <p class="text-slate-500 mt-3 max-w-xl mx-auto">Ergonomic furniture designed for 8-hour workdays. All our products are B2B solutions for modern offices.</p>
+                <p class="text-slate-500 mt-3 max-w-xl mx-auto"><span data-a2="Ergonomic furniture designed for 8-hour workdays. All our products are B2B solutions for modern offices." data-b2="Ergonomic furnishings engineered for extended professional use. Our entire portfolio comprises B2B solutions tailored to the modern workplace.">Ergonomic furniture designed for 8-hour workdays. All our products are B2B solutions for modern offices.</span></p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -317,20 +315,20 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">SpineSaver Chair</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Our premium ergonomic chair with 4D armrests, lumbar support, and breathable mesh back. Perfect for 8-hour shifts. Supports the natural S-shape of your spine.
+                            <span data-a2="Our premium ergonomic chair with 4D armrests, lumbar support, and breathable mesh back. Perfect for 8-hour shifts. Supports the natural S-shape of your spine." data-b2="Our flagship ergonomic seating solution featuring 4D-adjustable armrests, dynamic lumbar support, and a breathable mesh backrest. Engineered for extended use of 8+ hours. Promotes the natural curvature of the spine.">Our premium ergonomic chair with 4D armrests, lumbar support, and breathable mesh back. Perfect for 8-hour shifts. Supports the natural S-shape of your spine.</span>
                         </p>
                         <ul class="text-sm text-slate-500 space-y-1 mb-4">
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Dynamic lumbar support
+                                <span data-a2="Dynamic lumbar support" data-b2="Adaptive lumbar support system">Dynamic lumbar support</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Adjustable to body size
+                                <span data-a2="Adjustable to body size" data-b2="Fully adjustable to individual proportions">Adjustable to body size</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Breathable & durable
+                                <span data-a2="Breathable & durable" data-b2="Breathable and hard-wearing materials">Breathable & durable</span>
                             </li>
                         </ul>
                     </div>
@@ -351,20 +349,20 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">ElevateDesk Pro</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Electric height-adjustable desk with memory function. Keep your team active and healthy during the workday. Adjust from sitting to standing with one click.
+                            <span data-a2="Electric height-adjustable desk with memory function. Keep your team active and healthy during the workday. Adjust from sitting to standing with one click." data-b2="Motorised height-adjustable desk with programmable memory presets. Promotes an active and health-conscious workstyle. Transitions seamlessly between seated and standing positions at the touch of a button.">Electric height-adjustable desk with memory function. Keep your team active and healthy during the workday. Adjust from sitting to standing with one click.</span>
                         </p>
                         <ul class="text-sm text-slate-500 space-y-1 mb-4">
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                72 – 120 cm adjustment
+                                <span data-a2="72 – 120 cm adjustment" data-b2="Height range: 72 – 120 cm">72 – 120 cm adjustment</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Quiet motor
+                                <span data-a2="Quiet motor" data-b2="Low-noise electric motor">Quiet motor</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Memory function
+                                <span data-a2="Memory function" data-b2="Programmable memory presets">Memory function</span>
                             </li>
                         </ul>
                     </div>
@@ -385,20 +383,20 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 mb-2">ModulStore Cabinets</h3>
                         <p class="text-slate-600 text-sm leading-relaxed mb-4">
-                            Flexible, lockable storage solutions. Modular design allows you to expand your archiving system as your company grows. Easy assembly without tools.
+                            <span data-a2="Flexible, lockable storage solutions. Modular design allows you to expand your archiving system as your company grows. Easy assembly without tools." data-b2="Versatile, lockable storage infrastructure. The modular architecture enables scalable expansion of your archiving system in line with corporate growth. Tool-free assembly for rapid deployment.">Flexible, lockable storage solutions. Modular design allows you to expand your archiving system as your company grows. Easy assembly without tools.</span>
                         </p>
                         <ul class="text-sm text-slate-500 space-y-1 mb-4">
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Stackable & expandable
+                                <span data-a2="Stackable & expandable" data-b2="Stackable and scalable">Stackable & expandable</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Lockable for security
+                                <span data-a2="Lockable for security" data-b2="Secure locking mechanism">Lockable for security</span>
                             </li>
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-od-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                Tool-free assembly
+                                <span data-a2="Tool-free assembly" data-b2="Tool-free installation">Tool-free assembly</span>
                             </li>
                         </ul>
                     </div>
@@ -415,10 +413,10 @@
     <section class="py-20 px-6 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-1/2 reveal-left">
-                <span class="text-od-600 font-semibold tracking-wider uppercase text-sm">For Business Clients</span>
-                <h2 class="text-4xl font-bold text-slate-900 mt-2 mb-6 leading-tight">Corporate & B2B Services</h2>
+                <span class="text-od-600 font-semibold tracking-wider uppercase text-sm"><span data-a2="For Business Clients" data-b2="For Corporate Clients">For Business Clients</span></span>
+                <h2 class="text-4xl font-bold text-slate-900 mt-2 mb-6 leading-tight"><span data-a2="Corporate & B2B Services" data-b2="Enterprise & B2B Solutions">Corporate & B2B Services</span></h2>
                 <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                    We specialize in Business-to-Business (B2B) relationships. Whether you are outfitting a small agency or a corporate headquarters, we provide tailored solutions.
+                    <span data-a2="We specialize in Business-to-Business (B2B) relationships. Whether you are outfitting a small agency or a corporate headquarters, we provide tailored solutions." data-b2="We are dedicated to cultivating long-term Business-to-Business (B2B) partnerships. Whether you are furnishing a small agency or equipping a corporate headquarters, we deliver bespoke solutions tailored to your requirements.">We specialize in Business-to-Business (B2B) relationships. Whether you are outfitting a small agency or a corporate headquarters, we provide tailored solutions.</span>
                 </p>
                 <ul class="space-y-5">
                     <li class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
@@ -427,7 +425,7 @@
                         </div>
                         <div>
                             <strong class="block text-slate-900 font-bold text-lg">Volume Discounts</strong>
-                            <span class="text-slate-600">Special pricing for bulk orders of 10+ workspaces.</span>
+                            <span class="text-slate-600"><span data-a2="Special pricing for bulk orders of 10+ workspaces." data-b2="Exclusive pricing structures for volume orders comprising 10+ workspaces.">Special pricing for bulk orders of 10+ workspaces.</span></span>
                         </div>
                     </li>
                     <li class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
@@ -436,7 +434,7 @@
                         </div>
                         <div>
                             <strong class="block text-slate-900 font-bold text-lg">3D Office Planning</strong>
-                            <span class="text-slate-600">Our design team creates virtual layouts of your office before you buy.</span>
+                            <span class="text-slate-600"><span data-a2="Our design team creates virtual layouts of your office before you buy." data-b2="Our in-house design team produces detailed virtual office layouts prior to purchase.">Our design team creates virtual layouts of your office before you buy.</span></span>
                         </div>
                     </li>
                     <li class="flex items-start gap-4 p-4 rounded-xl bg-white shadow-sm border border-slate-100">
@@ -445,7 +443,7 @@
                         </div>
                         <div>
                             <strong class="block text-slate-900 font-bold text-lg">Installation Service</strong>
-                            <span class="text-slate-600">Professional assembly on-site by our certified technicians.</span>
+                            <span class="text-slate-600"><span data-a2="Professional assembly on-site by our certified technicians." data-b2="Professional on-site assembly carried out by our certified installation technicians.">Professional assembly on-site by our certified technicians.</span></span>
                         </div>
                     </li>
                 </ul>
@@ -460,21 +458,21 @@
                                 <div class="w-14 h-14 rounded-full bg-od-50 flex items-center justify-center text-od-600 font-bold text-xl">98%</div>
                                 <div>
                                     <div class="font-bold text-slate-900">Customer Satisfaction</div>
-                                    <div class="text-sm text-slate-500">Based on 500+ corporate installations</div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Based on 500+ corporate installations" data-b2="Based on over 500 corporate installations">Based on 500+ corporate installations</span></div>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center text-green-600 font-bold text-xl">5yr</div>
                                 <div>
                                     <div class="font-bold text-slate-900">Warranty on All Products</div>
-                                    <div class="text-sm text-slate-500">Full coverage for peace of mind</div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Full coverage for peace of mind" data-b2="Comprehensive coverage for complete peace of mind">Full coverage for peace of mind</span></div>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 font-bold text-xl">48h</div>
                                 <div>
                                     <div class="font-bold text-slate-900">Delivery in Germany</div>
-                                    <div class="text-sm text-slate-500">Fast shipping from Düsseldorf branch</div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Fast shipping from Düsseldorf branch" data-b2="Expedited delivery from our Düsseldorf branch">Fast shipping from Düsseldorf branch</span></div>
                                 </div>
                             </div>
                         </div>
@@ -484,13 +482,13 @@
         </div>
     </section>
 
-    <!-- Careers / Working Here Section (wichtig für Seq. 2!) -->
+    <!-- Careers / Working Here Section -->
     <section id="careers" class="py-20 px-6 bg-gradient-to-br from-slate-100 to-white">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-14 reveal">
                 <span class="text-od-600 font-semibold tracking-wider uppercase text-sm">Join Our Team</span>
-                <h2 class="text-4xl font-bold text-slate-900 mt-2">Working at Office Design Ltd.</h2>
-                <p class="text-slate-500 mt-3 max-w-xl mx-auto">We are growing! Learn about life at Office Design and current opportunities at our Düsseldorf branch.</p>
+                <h2 class="text-4xl font-bold text-slate-900 mt-2"><span data-a2="Working at Office Design Ltd." data-b2="A Career at Office Design Ltd.">Working at Office Design Ltd.</span></h2>
+                <p class="text-slate-500 mt-3 max-w-xl mx-auto"><span data-a2="We are growing! Learn about life at Office Design and current opportunities at our Düsseldorf branch." data-b2="We are expanding! Discover professional life at Office Design and explore current vacancies at our Düsseldorf branch.">We are growing! Learn about life at Office Design and current opportunities at our Düsseldorf branch.</span></p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-10">
@@ -506,29 +504,29 @@
                         </div>
                     </div>
 
-                    <p class="text-slate-600 mb-6">We are looking for motivated Junior Sales Assistants to join our Düsseldorf team. You will support the Sales Department and help our B2B clients find the best furniture solutions.</p>
+                    <p class="text-slate-600 mb-6"><span data-a2="We are looking for motivated Junior Sales Assistants to join our Düsseldorf team. You will support the Sales Department and help our B2B clients find the best furniture solutions." data-b2="We are seeking driven Junior Sales Assistants to join our Düsseldorf team. You will provide comprehensive support to the Sales Department and assist our corporate clients in identifying optimal workplace solutions.">We are looking for motivated Junior Sales Assistants to join our Düsseldorf team. You will support the Sales Department and help our B2B clients find the best furniture solutions.</span></p>
 
                     <h4 class="font-bold text-slate-900 mb-3 text-sm uppercase tracking-wide">Your Tasks:</h4>
                     <ul class="space-y-2 text-slate-600 text-sm mb-6">
                         <li class="flex items-start gap-2">
                             <span class="text-od-500 mt-0.5">▸</span>
-                            <span>Answer phone calls and emails from business clients</span>
+                            <span data-a2="Answer phone calls and emails from business clients" data-b2="Manage inbound telephone and email correspondence from corporate clients">Answer phone calls and emails from business clients</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-od-500 mt-0.5">▸</span>
-                            <span>Prepare price quotes and product information</span>
+                            <span data-a2="Prepare price quotes and product information" data-b2="Prepare quotations and compile detailed product documentation">Prepare price quotes and product information</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-od-500 mt-0.5">▸</span>
-                            <span>Help with office planning appointments</span>
+                            <span data-a2="Help with office planning appointments" data-b2="Assist in coordinating office planning consultations">Help with office planning appointments</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-od-500 mt-0.5">▸</span>
-                            <span>Update the customer database</span>
+                            <span data-a2="Update the customer database" data-b2="Maintain and update the CRM database">Update the customer database</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-od-500 mt-0.5">▸</span>
-                            <span>Work closely with the Logistics and Purchasing teams</span>
+                            <span data-a2="Work closely with the Logistics and Purchasing teams" data-b2="Collaborate closely with the Logistics and Procurement departments">Work closely with the Logistics and Purchasing teams</span>
                         </li>
                     </ul>
 
@@ -536,19 +534,19 @@
                     <ul class="space-y-2 text-slate-600 text-sm">
                         <li class="flex items-start gap-2">
                             <span class="text-green-500 mt-0.5">✓</span>
-                            <span>Modern office in central Düsseldorf</span>
+                            <span data-a2="Modern office in central Düsseldorf" data-b2="Contemporary office premises in central Düsseldorf">Modern office in central Düsseldorf</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-green-500 mt-0.5">✓</span>
-                            <span>International team (English as company language)</span>
+                            <span data-a2="International team (English as company language)" data-b2="Multinational team with English as the corporate language">International team (English as company language)</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-green-500 mt-0.5">✓</span>
-                            <span>Training and career development</span>
+                            <span data-a2="Training and career development" data-b2="Professional development and career advancement opportunities">Training and career development</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="text-green-500 mt-0.5">✓</span>
-                            <span>Ergonomic workplace with our own products</span>
+                            <span data-a2="Ergonomic workplace with our own products" data-b2="Ergonomic workstation equipped with our own product range">Ergonomic workplace with our own products</span>
                         </li>
                     </ul>
                 </div>
@@ -561,43 +559,43 @@
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">08:30</div>
                                 <div class="flex-1 pb-4 border-b border-slate-100">
-                                    <div class="font-semibold text-slate-900">Start of work</div>
-                                    <div class="text-sm text-slate-500">Check emails and calendar. Prepare for client meetings.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="Start of work" data-b2="Commencement of duties">Start of work</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Check emails and calendar. Prepare for client meetings." data-b2="Review correspondence and schedule. Prepare for scheduled client consultations.">Check emails and calendar. Prepare for client meetings.</span></div>
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">09:30</div>
                                 <div class="flex-1 pb-4 border-b border-slate-100">
-                                    <div class="font-semibold text-slate-900">Team meeting</div>
-                                    <div class="text-sm text-slate-500">Daily stand-up with Sales Manager Helen Carter.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="Team meeting" data-b2="Team briefing">Team meeting</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Daily stand-up with Sales Manager Helen Carter." data-b2="Daily stand-up meeting with Sales Manager Helen Carter.">Daily stand-up with Sales Manager Helen Carter.</span></div>
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">10:00</div>
                                 <div class="flex-1 pb-4 border-b border-slate-100">
-                                    <div class="font-semibold text-slate-900">Client contact</div>
-                                    <div class="text-sm text-slate-500">Phone calls and emails with B2B customers.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="Client contact" data-b2="Client liaison">Client contact</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Phone calls and emails with B2B customers." data-b2="Outbound and inbound communications with corporate clientele.">Phone calls and emails with B2B customers.</span></div>
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">12:30</div>
                                 <div class="flex-1 pb-4 border-b border-slate-100">
-                                    <div class="font-semibold text-slate-900">Lunch break</div>
-                                    <div class="text-sm text-slate-500">30-minute break. Kitchen available on floor 2.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="Lunch break" data-b2="Lunch recess">Lunch break</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="30-minute break. Kitchen available on floor 2." data-b2="30-minute lunch break. Kitchen facilities available on the second floor.">30-minute break. Kitchen available on floor 2.</span></div>
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">14:00</div>
                                 <div class="flex-1 pb-4 border-b border-slate-100">
-                                    <div class="font-semibold text-slate-900">Office planning</div>
-                                    <div class="text-sm text-slate-500">Help clients with 3D office layouts and product selection.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="Office planning" data-b2="Space planning">Office planning</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Help clients with 3D office layouts and product selection." data-b2="Assist clients with 3D office layout planning and product specification.">Help clients with 3D office layouts and product selection.</span></div>
                                 </div>
                             </div>
                             <div class="flex gap-4">
                                 <div class="w-16 text-right text-sm font-bold text-od-600">16:30</div>
                                 <div class="flex-1">
-                                    <div class="font-semibold text-slate-900">End of work</div>
-                                    <div class="text-sm text-slate-500">Finish orders, update database, plan next day.</div>
+                                    <div class="font-semibold text-slate-900"><span data-a2="End of work" data-b2="Close of business">End of work</span></div>
+                                    <div class="text-sm text-slate-500"><span data-a2="Finish orders, update database, plan next day." data-b2="Finalise pending orders, update records, and prepare the following day's schedule.">Finish orders, update database, plan next day.</span></div>
                                 </div>
                             </div>
                         </div>
@@ -607,7 +605,7 @@
                         <svg class="w-6 h-6 text-od-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <div>
                             <div class="font-bold text-od-800 text-sm">Did you know?</div>
-                            <div class="text-od-700 text-sm">Our colleagues from the London HQ visit the Düsseldorf branch every month to share best practices and strengthen our international team spirit.</div>
+                            <div class="text-od-700 text-sm"><span data-a2="Our colleagues from the London HQ visit the Düsseldorf branch every month to share best practices and strengthen our international team spirit." data-b2="Colleagues from our London headquarters visit the Düsseldorf branch on a monthly basis to exchange best practices and reinforce our cross-border team cohesion.">Our colleagues from the London HQ visit the Düsseldorf branch every month to share best practices and strengthen our international team spirit.</span></div>
                         </div>
                     </div>
                 </div>
@@ -627,7 +625,6 @@
             <div class="org-tree flex justify-center min-w-max pb-10 reveal mb-12">
                 <ul>
                     <li>
-                        <!-- CEO -->
                         <div class="bg-gradient-to-br from-od-600 to-od-700 text-white p-4 rounded-xl shadow-lg inline-block w-56 border border-od-400/50 overflow-hidden">
                             <img src="portrait_john_bradley.jpg" alt="John Bradley portrait" class="w-full h-44 object-cover rounded-lg mb-3 cursor-pointer hover:opacity-90 transition" onclick="openLightbox(this.src)">
                             <span class="block font-bold text-sm text-od-200">Managing Director (CEO)</span>
@@ -635,7 +632,6 @@
                             <span class="block text-xs mt-1 text-od-300">London HQ</span>
                         </div>
                         <ul>
-                            <!-- HR -->
                             <li>
                                 <div class="bg-slate-800 text-white p-3 rounded-xl shadow inline-block w-48 border border-slate-600 hover:border-od-500 transition overflow-hidden">
                                     <img src="portrait_eleanor_rigby.jpg" alt="Eleanor Rigby portrait" class="w-full h-40 object-cover object-top rounded-lg mb-2 cursor-pointer hover:opacity-90 transition" onclick="openLightbox(this.src)">
@@ -644,7 +640,6 @@
                                     <span class="block text-xs text-slate-500 italic">HR Assistant</span>
                                 </div>
                             </li>
-                            <!-- Sales / Düsseldorf -->
                             <li>
                                 <div class="bg-slate-800 text-white p-3 rounded-xl shadow inline-block w-56 border border-od-500/50 relative group overflow-hidden">
                                     <div class="bg-od-500 text-xs px-3 py-1 rounded-full whitespace-nowrap font-semibold shadow-lg mb-2 inline-block">Düsseldorf Branch</div>
@@ -663,7 +658,6 @@
                                     </ul>
                                 </div>
                             </li>
-                            <!-- Purchasing -->
                             <li>
                                 <div class="bg-slate-800 text-white p-3 rounded-xl shadow inline-block w-48 border border-slate-600 hover:border-od-500 transition overflow-hidden">
                                     <img src="portrait_charlotte_king.jpg" alt="Charlotte King portrait" class="w-full h-40 object-cover object-top rounded-lg mb-2 cursor-pointer hover:opacity-90 transition" onclick="openLightbox(this.src)">
@@ -672,7 +666,6 @@
                                     <span class="block text-xs text-slate-500 italic">Purchasing Officer</span>
                                 </div>
                             </li>
-                            <!-- Logistics -->
                             <li>
                                 <div class="bg-slate-800 text-white p-3 rounded-xl shadow inline-block w-48 border border-slate-600 hover:border-od-500 transition overflow-hidden">
                                     <img src="portrait_maximilian_bauer.jpg" alt="Maximilian Bauer portrait" class="w-full h-40 object-cover object-top rounded-lg mb-2 cursor-pointer hover:opacity-90 transition" onclick="openLightbox(this.src)">
@@ -700,7 +693,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-10">
-                <!-- London HQ -->
                 <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 reveal-left">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-full bg-od-100 text-od-600 flex items-center justify-center">
@@ -708,7 +700,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-slate-900">London Headquarters</h3>
-                            <p class="text-sm text-slate-500">Main Office & Design Centre</p>
+                            <p class="text-sm text-slate-500"><span data-a2="Main Office & Design Centre" data-b2="Corporate Headquarters & Design Centre">Main Office & Design Centre</span></p>
                         </div>
                     </div>
                     <div class="space-y-3 text-slate-600">
@@ -727,7 +719,6 @@
                     </div>
                 </div>
 
-                <!-- Düsseldorf Branch -->
                 <div class="bg-od-50 rounded-2xl p-8 border border-od-100 reveal-right">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-full bg-od-200 text-od-700 flex items-center justify-center">
@@ -735,7 +726,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-slate-900">Düsseldorf Branch</h3>
-                            <p class="text-sm text-slate-500">Sales & Service Germany</p>
+                            <p class="text-sm text-slate-500"><span data-a2="Sales & Service Germany" data-b2="Sales & Customer Service Germany">Sales & Service Germany</span></p>
                         </div>
                     </div>
                     <div class="space-y-3 text-slate-600">
@@ -766,7 +757,7 @@
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-8">
             <div class="md:col-span-2">
                 <img src="Office_Design_Ltd_Logo%20Kopie.png" alt="Office Design Ltd." class="h-10 w-auto mb-4 opacity-80">
-                <p class="text-sm leading-relaxed max-w-sm">Premium ergonomic office furniture for modern businesses. Designed in London, engineered for the world.</p>
+                <p class="text-sm leading-relaxed max-w-sm"><span data-a2="Premium ergonomic office furniture for modern businesses. Designed in London, engineered for the world." data-b2="Premium ergonomic workplace solutions for the contemporary enterprise. Conceived in London, engineered for a global clientele.">Premium ergonomic office furniture for modern businesses. Designed in London, engineered for the world.</span></p>
             </div>
             <div>
                 <h4 class="text-white font-bold mb-4">Quick Links</h4>
@@ -799,7 +790,17 @@
                 <p class="text-xs text-slate-500 mt-2">Internal resources & training materials</p>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 text-center text-xs">
+
+        <!-- Language Level Toggle -->
+        <div class="max-w-7xl mx-auto px-6 mt-8 pt-6 border-t border-slate-800 flex items-center justify-center gap-4">
+            <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Language Level</span>
+            <div class="flex items-center bg-slate-800 rounded-full p-1" id="levelToggle">
+                <button onclick="setLevel('a2')" id="btnA2" class="px-4 py-1.5 rounded-full text-sm font-bold transition-all bg-od-600 text-white">A2</button>
+                <button onclick="setLevel('b2')" id="btnB2" class="px-4 py-1.5 rounded-full text-sm font-bold transition-all text-slate-400 hover:text-white">B2</button>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 mt-6 pt-4 border-t border-slate-800 text-center text-xs">
             <p>&copy; 2026 Office Design Ltd. All rights reserved.</p>
             <p class="mt-2 text-slate-600">Fictional company created for educational purposes (Berufskolleg NRW).</p>
         </div>
@@ -822,7 +823,6 @@
     </div>
 
     <script>
-        // Lightbox
         function openLightbox(src) {
             const lb = document.getElementById('lightbox');
             const img = document.getElementById('lightboxImg');
@@ -875,6 +875,33 @@
                 navbar.classList.add('shadow-sm');
             }
         });
+
+        function setLevel(level) {
+            document.body.classList.add('level-switching');
+            setTimeout(() => {
+                document.querySelectorAll('[data-a2][data-b2]').forEach(el => {
+                    el.textContent = level === 'b2' ? el.dataset.b2 : el.dataset.a2;
+                });
+                const btnA2 = document.getElementById('btnA2');
+                const btnB2 = document.getElementById('btnB2');
+                if (level === 'b2') {
+                    btnB2.classList.add('bg-od-600', 'text-white');
+                    btnB2.classList.remove('text-slate-400');
+                    btnA2.classList.remove('bg-od-600', 'text-white');
+                    btnA2.classList.add('text-slate-400');
+                } else {
+                    btnA2.classList.add('bg-od-600', 'text-white');
+                    btnA2.classList.remove('text-slate-400');
+                    btnB2.classList.remove('bg-od-600', 'text-white');
+                    btnB2.classList.add('text-slate-400');
+                }
+                localStorage.setItem('langLevel', level);
+                document.body.classList.remove('level-switching');
+            }, 150);
+        }
+
+        const savedLevel = localStorage.getItem('langLevel') || 'a2';
+        if (savedLevel === 'b2') setLevel('b2');
     </script>
 </body>
 </html>
